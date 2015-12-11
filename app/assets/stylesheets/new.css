@@ -17,6 +17,6 @@ h5 {
 	padding: 5px 10px 10px 10px;
 }
 
-.name-field, .file-field, .btn {
+.name-field, .file-field, .new-file .btn {
 	margin: 10px 15px 0 15px;
 }
