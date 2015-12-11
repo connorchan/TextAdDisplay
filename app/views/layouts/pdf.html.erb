@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= wicked_pdf_stylesheet_link_tag 'application', media: 'all' %>
+  <%= wicked_pdf_stylesheet_link_tag 'show.css', media: 'all' %>
+</head>
+<body>
+  <div class='container'>
+    <%= yield %>
+	<%= render "layouts/pdf_footer", media: 'all' %>
+  </div>
+
+</body>
+</html>

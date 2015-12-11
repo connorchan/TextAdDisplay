@@ -1,0 +1,12 @@
+	<header>
+		<div class="logo">
+			<%= link_to image_tag('tadlogo.png'), '/' %>
+		</div>
+		<div class="user_prompt">
+			<% if user_signed_in? %>
+				<%= button_to "Log out", destroy_user_session_path, :method => :delete, :class => 'btn btn-success' %>
+			<% else %>
+				<%= link_to "Sign up", new_user_registration_path, :class => 'btn btn-success' %> <strong>or</strong> <%= link_to "Sign in", new_user_session_path, :class => 'btn btn-success' %>
+			<% end %>
+		</div>
+	</header>

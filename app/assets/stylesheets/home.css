@@ -1,0 +1,17 @@
+.jumbotron {
+	background-image: url("lights.jpg");
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	height: 350px;
+	color: white;
+	border: 1px solid black;
+}
+
+h1, p {
+	margin-left: 30px;
+}
+
+.col-md-4 h4, .col-md-4 p {
+	text-align: center;
+}

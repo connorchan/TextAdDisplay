@@ -1,0 +1,61 @@
+.adgroup {
+	margin-left: 10px;
+	border-left: 2px solid gray;
+}
+
+.adgroupinfo {
+	margin-left: 20px;
+}
+
+.campinfo {
+	margin-left: 30px;
+}
+
+td {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.campaign, .adgroup, .keywords, .negatives {
+	display: block;
+}
+
+.textad {
+	font-family: Arial;
+	display: inline-block;
+	width: 255px;
+	margin: 0 10px 10px 0;
+}
+
+.headline, .dispurl, .desc {
+	margin-left: 3px;
+}
+
+h2 {
+	margin-left: 40px;
+}
+
+h3 {
+	margin: 15px 0 15px 25px;
+}
+
+.campinfo, .campinfo tr, .campinfo td, .adgroupinfo, .adgroupinfo tr, .adgroupinfo td, .keywords tr, .keywords td, .keywords th, .negatives tr, .negatives td, .negatives th, .textad {
+	border: 1px solid black;
+}
+
+.campaign, .adgroup, .campinfo td, .adgroupinfo td, .textads, .keywords, .negatives {
+	padding: 0 10px 0 20px;
+}
+
+th {
+	padding: 0 5px 0 5px;
+}
+
+.headline {
+	color: blue;
+	text-decoration: underline;
+}
+
+.dispurl {
+	color: green;
+}

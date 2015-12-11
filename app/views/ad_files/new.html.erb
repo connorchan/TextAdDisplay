@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<%= stylesheet_link_tag 'new.css' %>
+	</head>
+	<body>
+		<% if !flash[:notice].blank? %>
+		   <div class = "alert alert-info">
+		      <%= flash[:notice] %>
+		   </div>
+		<% end %>
+		<a data-toggle="collapse" data-target="#collapseinst"><h5>Show/Hide instructions</h5></a>
+		<div class="collapse" id="collapseinst">
+			<h2>Instructions for Use:</h2>
+			<br/>
+			<h4>3 Simple Steps!</h5>
+			<ol>
+				<li>Open AdWords Editor and navigate to the account you wish to export.
+					Either select your desired campaigns for CSV export, or click to export the
+					entire account as a CSV.
+					<br/>
+					<%= image_tag("export.png", size: "645x330", class: "export") %>
+				</li>
+				<br/>
+				<li>Open your exported CSV and click "Save As." Make sure the file format is saved
+					as a CSV, rather than in UTF-16 Unicode Text (.txt).
+					<br/>
+					<%= image_tag("format.png", class: "format")%>
+				</li>
+				<br/>
+				<li>Upload the CSV into the below form, give it a name, and click the button
+					to save. You now have a formatted PDF of your text ad campaigns.
+				</li>
+				<br/>
+			</ol>
+		</div>
+		<div class="new-file">
+			<%= form_for @adfile, url: ad_files_path, html: { multipart: true } do |form| %>
+				<%= form.label :name, "Business/Client/Campaign Name:" %>
+				<%= form.text_field :name, class: "name-field" %>
+				<%= form.file_field :text_ad_file, class: "file-field" %>
+				<%= form.submit "Save", class: "btn btn-primary" %>
+			<% end %>
+		</div>
+	</body>
+	</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<%= stylesheet_link_tag 'filesindex.css' %>
+	</head>
+	<body>
+		<% if !flash[:notice].blank? %>
+		   <div class = "alert alert-info">
+		      <%= flash[:notice] %>
+		   </div>
+		<% end %>
+		<div class="uploads">
+			<h3>Welcome!</h3>
+			<% if @user.ad_files.empty? %>
+				<%= "To get started, click the button below to upload a CSV export from AdWords Editor." %>
+			<% else %>
+				<%= "Your uploaded AdWords campaigns are listed below." %>
+				<%= "Click to download a PDF or open in the browser." %>
+			<% end %>
+			<br />
+			<br />
+			<%= link_to "New AdWords CSV", new_ad_file_path, class: "btn btn-primary" %>
+			<br />
+			<br />
+
+			<table class = "table table-bordered table-striped">
+			   <thead>
+			      <tr>
+			         <th>Name</th>
+			         <th>Download Link</th>
+					 <th>View in Browser</th>
+			         <th> </th>
+			      </tr>
+			   </thead>
+   
+			   <tbody>
+			      <% @adfile.each do |adfile| %>
+         
+			         <tr>
+			            <td><%= adfile.name %></td>
+			            <td><%= link_to "Download PDF", ad_file_path(adfile.id, :format => :pdf) %> </td>
+						<td><%= link_to "Open", ad_file_path(adfile.id) %> </td>
+			            <td><%= button_to "Delete",  adfile, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete this file?" %></td>
+			         </tr>
+         
+			      <% end %>
+			   </tbody>
+   
+			</table>
+		</div>
+	</body>
+	</html>

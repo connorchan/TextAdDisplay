@@ -1,0 +1,48 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+header{
+	height: 60px;
+	border-bottom: 1px solid black;
+	margin-bottom: 15px;
+	background-color: #505050;
+	color: white;
+}
+
+header a {
+	text-decoration: none;
+}
+
+footer {
+	margin-top: 75px;
+	margin-bottom: 50px;
+}
+
+footer p {
+	text-align: center;
+}
+
+
+.logo {
+	float: left;
+	width: 330px;
+	margin-left: 25px;
+}
+
+.logo img {
+	width: 330px;
+	margin-top: 3px;
+}
+
+.upwordlogo {
+	display: block;
+	width: 130px;
+	margin: 0 auto;
+}
+
+.user_prompt {
+	width: 170px;
+	float: right;
+	margin-top: 15px;
+	margin-right: 50px;
+}

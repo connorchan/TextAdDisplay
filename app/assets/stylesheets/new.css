@@ -1,0 +1,22 @@
+.format, .export {
+	box-shadow: 10px 10px 5px #888888;
+	margin: 10px 0 10px 0;
+}
+
+h2, h4, .new-file {
+	display: inline-block;
+	margin: 0 0 40px 20px;
+}
+
+h5 {
+	margin-left: 20px;
+}
+
+.new-file {
+	border: 1px solid black;
+	padding: 5px 10px 10px 10px;
+}
+
+.name-field, .file-field, .btn {
+	margin: 10px 15px 0 15px;
+}

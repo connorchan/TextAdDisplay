@@ -1,0 +1,24 @@
+.field, .actions, .textad {
+	margin-bottom: 30px;
+}
+
+.textad {
+	margin-top: 20px;
+	font-family: Arial;
+	display: block;
+	width: 255px;
+	border: 1px solid black;
+}
+
+.headline {
+	color: blue;
+	text-decoration: underline;
+}
+
+.dispurl {
+	color: green;
+}
+
+.headline, .dispurl, .desc {
+	margin-left: 3px;
+}
