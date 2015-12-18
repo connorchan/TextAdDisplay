@@ -33,6 +33,8 @@ gem 'wkhtmltopdf-binary'
 
 gem 'devise'
 
+gem 'wkhtmltopdf-binary-edge', '~> 0.12.2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

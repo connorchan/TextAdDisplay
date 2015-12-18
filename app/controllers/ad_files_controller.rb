@@ -17,9 +17,9 @@ class AdFilesController < ApplicationController
     @adfile = AdFile.new(ad_file_params)
     if @adfile.save
       @user.ad_files << @adfile
-      redirect_to ad_files_path, notice: "The AdWords CSV has been uploaded."
+      redirect_to ad_files_path, notice: "Your CSV has been uploaded."
     else
-      flash[:notice] = "File type invalid. Please upload an AdWords Editor CSV file."
+      flash[:notice] = "File type invalid. Please upload a valid CSV file."
       render "new"
     end
     
@@ -29,7 +29,7 @@ class AdFilesController < ApplicationController
     @user = current_user
     @adfile = @user.ad_files.find(params[:id])
     @adfile.destroy
-    redirect_to ad_files_path, notice: "The AdWords file has been deleted."
+    redirect_to ad_files_path, notice: "The files have been deleted."
   end
 
   def show
@@ -49,7 +49,7 @@ class AdFilesController < ApplicationController
   private
   
   def ad_file_params
-    params.require(:ad_file).permit(:name, :text_ad_file)
+    params.require(:ad_file).permit(:name, :platform, :text_ad_file)
   end
   
   def catch_not_found

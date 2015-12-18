@@ -3,7 +3,12 @@
 	margin: 10px 0 10px 0;
 }
 
-h2, h4, .new-file {
+.twittercsv {
+	box-shadow: 10px 10px 5px #888888;
+	margin: 0 0 50px 50px;
+}
+
+h2, h4, .new-file, .collapse p {
 	display: inline-block;
 	margin: 0 0 40px 20px;
 }

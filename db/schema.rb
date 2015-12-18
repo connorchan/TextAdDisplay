@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204153556) do
+ActiveRecord::Schema.define(version: 20151216165242) do
 
   create_table "ad_files", force: :cascade do |t|
     t.datetime "created_at",                            null: false
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20151204153556) do
     t.datetime "text_ad_file_updated_at"
     t.string   "name",                      limit: 255
     t.integer  "user_id",                   limit: 4
+    t.string   "platform",                  limit: 255
   end
 
   add_index "ad_files", ["user_id"], name: "fk_rails_a3fa8ddd81", using: :btree

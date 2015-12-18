@@ -1,0 +1,111 @@
+require 'csv'
+require 'open-uri'
+class TweetsParser
+  
+  def initialize(filename)
+    @campaigns = []
+    @campData = {}
+    @tweets = {}
+    @filename = filename
+  end
+  
+  def campaigns
+    @campaigns
+  end
+  
+  def campData
+    @campData
+  end
+  
+  def tweets
+    @tweets
+  end
+  
+  def parseTweets
+    self.getCampaigns()
+    self.getCampaignData()
+    self.getTweets()
+  end
+  
+  def getCampaigns
+    #Open Twitter CSV
+    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+      campName = row['Campaign']
+      #If campaign name doesn't exist in the array, add it
+      if (@campaigns.include? campName) || (campName.nil?)
+        next
+      else
+        @campaigns << campName
+      end
+    end
+  end
+  
+  def getCampaignData
+    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+      campaign = row['Campaign']
+      data = []
+      if !(@campData.has_key?("campaign"))
+        data << row['Daily Budget']
+        data << row['Targeting Options']
+        @campData[campaign] = data
+      end
+    end
+  end
+  
+  def getTweets
+    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+      promtweet = []
+      if (@tweets[row['Campaign']].nil?)
+        @tweets[row['Campaign']] = []
+      end
+      
+      if !(row['Image Link'].nil?)
+        promtweet << row['Image Link']
+      end
+      
+      if !(row['CTA'].nil?)
+        promtweet << row['CTA']
+      else
+        promtweet << "Learn More"
+      end
+      
+      if !(row['Headline'].nil?)
+        promtweet << row['Headline']
+      else
+        promtweet << "Check it Out"
+      end
+      
+      if !(row['Display URL'].nil?)
+        promtweet << row['Display URL']
+      else
+        promtweet << "yoursite.com"
+      end
+      
+      if !(row['Tweet'].nil?)
+        promtweet << row['Tweet']
+      else
+        promtweet << "Write a tweet to promote your brand! So few characters, so much time."
+      end
+      
+      if !(row['Account Name'].nil?)
+        promtweet << row['Account Name']
+      else
+        promtweet << 0
+      end
+      
+      if !(row['Twitter Handle'].nil?)
+        promtweet << row['Twitter Handle']
+      else
+        promtweet << 0
+      end
+      
+      if !(row['Link to Profile Picture'].nil?)
+        promtweet << row['Link to Profile Picture']
+      else
+        promtweet << 0
+      end
+      
+      @tweets[row['Campaign']] << promtweet
+    end
+  end
+end

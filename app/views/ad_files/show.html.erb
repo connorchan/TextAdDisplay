@@ -8,114 +8,181 @@
 			<h2><%= @adfile.name %></h2>
 		</div>
 		<hr/>
-		<% adparse = AdwordsParser.new("#{@adfile.text_ad_file.path}") %>
-		<% adparse.parseCampaigns()%>
-		<% for i in 0...adparse.campaigns.length %>
-			<% campaign = adparse.campaigns[i] %>
-			<% adgroups = adparse.agMap[campaign] %>
-			<div class="campaign">
-				<h3>Campaign: <%= adparse.campData[campaign]['Campaign'] %> </h3>
-				<table class="campinfo">
-					<tr>
-						<td><strong>Status</strong></td>
-						<td><%= adparse.campData[campaign]['Campaign Status'] %></td>
-					</tr>
-					<tr>
-						<td><strong>Budget (USD)</strong></td>
-						<td>$<%= adparse.campData[campaign]['Campaign Daily Budget'] %></td>
-					</tr>
-					<tr>
-						<td><strong>Dates</strong></td>
-						<td><%= adparse.campData[campaign]['Start Date'] %> - <%= adparse.campData[campaign['End Date']] || "TBD" %></td>
-					</tr>
-					<tr>
-						<td><strong>Campaign Type</strong></td>
-						<td><%= adparse.campData[campaign]['Campaign Type'] %></td>
-					</tr>
-					<tr>
-						<td><strong>Networks</strong></td>
-						<td><%= adparse.campData[campaign]['Networks'] %></td>
-					</tr>
-					<tr>
-						<td><strong>Bid Strategy</strong></td>
-						<td><%= adparse.campData[campaign]['Bid Strategy Type'] %></td>
-					</tr>
-					<tr>
-						<td><strong>Language Targeting</strong></td>
-						<td><%= adparse.campData[campaign]['Languages'] %></td>
-					</tr>
-				</table>
-			</div>
-			<% for j in 0...adgroups.length %>
-				<% adgroup = adgroups[j] %>
-				<div class="adgroup">
-					<h3>Ad Group: <%= adparse.agData[adgroup]['Ad Group'] %></h3>
-					<table class="adgroupinfo">
+		<% if @adfile.platform == "Google AdWords" %>
+			<% adparse = AdwordsParser.new("#{@adfile.text_ad_file.path}") %>
+			<% adparse.parseCampaigns()%>
+			<% for i in 0...adparse.campaigns.length %>
+				<% campaign = adparse.campaigns[i] %>
+				<% adgroups = adparse.agMap[campaign] %>
+				<div class="campaign">
+					<h3>Campaign: <%= adparse.campData[campaign]['Campaign'] %> </h3>
+					<table class="campinfo">
 						<tr>
 							<td><strong>Status</strong></td>
-							<td><strong>Default Max CPC</strong></td>
-							<td><strong>Flexible Reach</strong></td>
+							<td><%= adparse.campData[campaign]['Campaign Status'] %></td>
 						</tr>
 						<tr>
-							<td><%= adparse.agData[adgroup]['Ad Group Status'] %></td>
-							<td>$<%= adparse.agData[adgroup]['Max CPC'] %></td>
-							<td><%= adparse.agData[adgroup]['Flexible Reach'] %></td>
+							<td><strong>Budget (USD)</strong></td>
+							<td>$<%= adparse.campData[campaign]['Campaign Daily Budget'] %></td>
 						</tr>
 						<tr>
+							<td><strong>Dates</strong></td>
+							<td><%= adparse.campData[campaign]['Start Date'] %> - <%= adparse.campData[campaign['End Date']] || "TBD" %></td>
+						</tr>
+						<tr>
+							<td><strong>Campaign Type</strong></td>
+							<td><%= adparse.campData[campaign]['Campaign Type'] %></td>
+						</tr>
+						<tr>
+							<td><strong>Networks</strong></td>
+							<td><%= adparse.campData[campaign]['Networks'] %></td>
+						</tr>
+						<tr>
+							<td><strong>Bid Strategy</strong></td>
+							<td><%= adparse.campData[campaign]['Bid Strategy Type'] %></td>
+						</tr>
+						<tr>
+							<td><strong>Language Targeting</strong></td>
+							<td><%= adparse.campData[campaign]['Languages'] %></td>
 						</tr>
 					</table>
-					<br/>
-					<br/>
-					<div class="textads">
-						<% for k in 0...adparse.ads[adgroup].length%>
-							<div class="textad">
-								<span class="headline"><%= link_to "#{adparse.ads[adgroup][k][0]}", adparse.ads[adgroup][k][4] %></span>
-								<br/>
-								<span class="desc"><%= adparse.ads[adgroup][k][2] %></span>
-								<br/>
-								<span class="desc"><%= adparse.ads[adgroup][k][3] %></span>
-								<br/>
-								<span class="dispurl"><%= adparse.ads[adgroup][k][1] %></span>
-								<br/>
-								<br/>
-								<br/>
-							</div>
+				</div>
+				<% for j in 0...adgroups.length %>
+					<% adgroup = adgroups[j] %>
+					<div class="adgroup">
+						<h3>Ad Group: <%= adparse.agData[adgroup]['Ad Group'] %></h3>
+						<table class="adgroupinfo">
+							<tr>
+								<td><strong>Status</strong></td>
+								<td><strong>Default Max CPC</strong></td>
+								<td><strong>Flexible Reach</strong></td>
+							</tr>
+							<tr>
+								<td><%= adparse.agData[adgroup]['Ad Group Status'] %></td>
+								<td>$<%= adparse.agData[adgroup]['Max CPC'] %></td>
+								<td><%= adparse.agData[adgroup]['Flexible Reach'] %></td>
+							</tr>
+							<tr>
+							</tr>
+						</table>
+						<br/>
+						<br/>
+						<div class="textads">
+							<% for k in 0...adparse.ads[adgroup].length%>
+								<div class="textad">
+									<span class="headline"><%= link_to "#{adparse.ads[adgroup][k][0]}", adparse.ads[adgroup][k][4] %></span>
+									<br/>
+									<span class="desc"><%= adparse.ads[adgroup][k][2] %></span>
+									<br/>
+									<span class="desc"><%= adparse.ads[adgroup][k][3] %></span>
+									<br/>
+									<span class="dispurl"><%= adparse.ads[adgroup][k][1] %></span>
+									<br/>
+									<br/>
+									<br/>
+								</div>
+							<% end %>
+						</div>
+						<br/>
+						<table class="keywords">
+							<tr>
+								<th><strong>Keywords</strong></th>
+								<th><strong>Match Type</strong></th>
+								<th><strong>Max. CPC (USD)</strong></th>
+							</tr>
+						<% for m in 0...adparse.kws[adgroup].length %>
+								<tr>
+									<td><%= adparse.kws[adgroup][m][0] %></td>
+									<td><%= adparse.kws[adgroup][m][1] %></td>
+									<td>$<%= adparse.kws[adgroup][m][2] %></td>
+								</tr>
 						<% end %>
+						</table>
+						<br/>
+						<table class="negatives">
+							<tr>
+								<th><strong>Negative Keywords</strong></th>
+								<th><strong>Match Type</strong></th>
+							</tr>
+							<% for n in 0...adparse.negs[adgroup].length %>
+								<tr>
+									<td><%= adparse.negs[adgroup][n][0] %></td>
+									<td><%= adparse.negs[adgroup][n][1] %></td>
+								</tr>
+							<% end %>
+						</table>
 					</div>
 					<br/>
-					<table class="keywords">
-						<tr>
-							<th><strong>Keywords</strong></th>
-							<th><strong>Match Type</strong></th>
-							<th><strong>Max. CPC (USD)</strong></th>
-						</tr>
-					<% for m in 0...adparse.kws[adgroup].length %>
-							<tr>
-								<td><%= adparse.kws[adgroup][m][0] %></td>
-								<td><%= adparse.kws[adgroup][m][1] %></td>
-								<td>$<%= adparse.kws[adgroup][m][2] %></td>
-							</tr>
-					<% end %>
-					</table>
 					<br/>
-					<table class="negatives">
+					<hr/>
+				<% end %>
+				</div>
+			<% end %>
+		<% elsif @adfile.platform == "Twitter" %>
+			<% twitparse = TweetsParser.new("#{@adfile.text_ad_file.path}") %>
+			<% twitparse.parseTweets() %>
+			<% for i in 0...twitparse.campaigns.length %>
+				<% campaign = twitparse.campaigns[i] %>
+				<div class="campaign">
+					<h3>Campaign: <%= twitparse.campaigns[i] %> </h3>
+					<table class="campinfo">
 						<tr>
-							<th><strong>Negative Keywords</strong></th>
-							<th><strong>Match Type</strong></th>
+							<td><strong>Daily Budget</strong></td>
+							<td>$<%= twitparse.campData[campaign][0] %></td>
 						</tr>
-						<% for n in 0...adparse.negs[adgroup].length %>
-							<tr>
-								<td><%= adparse.negs[adgroup][n][0] %></td>
-								<td><%= adparse.negs[adgroup][n][1] %></td>
-							</tr>
-						<% end %>
+						<tr>
+							<td><strong>Targeting Options</strong></td>
+							<td><%= twitparse.campData[campaign][1]%></td>
+						</tr>
 					</table>
 				</div>
 				<br/>
-				<br/>
-				<hr/>
+				<% for j in 0...twitparse.tweets[campaign].length %>
+					<div class="tweet">
+						<div class="twitpic">
+							<% if (twitparse.tweets[campaign][j][7]) != 0 %>
+								<%= image_tag("#{twitparse.tweets[campaign][j][7]}", height: "40", width: "40", class: "tprofpic")%>
+							<% else %>
+								<%= image_tag("twitter-egg-icon.jpg", height: "40", width: "40", class: "tprofpic") %>
+							<% end %>
+						</div>
+						<div class="acctinfo">
+							<span>
+								<% if (twitparse.tweets[campaign][j][5]) != 0 %>
+									<strong><%= twitparse.tweets[campaign][j][5] %></strong>
+								<% else %>
+									<strong>Your Acct</strong>
+								<% end %>
+								<% if (twitparse.tweets[campaign][j][6]) != 0 %>
+									<span class="handle"><%= twitparse.tweets[campaign][j][6] %></span>
+								<% else %>
+									<span class="handle"> @YourAcct</span>
+								<% end %>
+								</span>
+						</div>
+						<br/>
+						<span class="tweetxt"><%= twitparse.tweets[campaign][j][4] %></span>
+						<br/>
+						<br/>
+						<%= image_tag("#{twitparse.tweets[campaign][j][0]}", height: "175", width: "480", class: "card") %>
+						<div class="headurl">
+							<strong><%= twitparse.tweets[campaign][j][2] %></strong>
+							<br/>
+							<span class="url"><%= twitparse.tweets[campaign][j][3] %></span>
+						</div>
+						<div class="cta">
+							<strong><%= twitparse.tweets[campaign][j][1] %></strong>
+						</div>
+						<br/>
+						<% if (twitparse.tweets[campaign][j][5]) != 0 %>
+							<span class="promotedby">Promoted by <%= twitparse.tweets[campaign][j][5] %></span>
+						<% else %>
+							<span class="promotedby">Promoted by YourBusiness</span>
+						<% end %>
+					</div>
+					<br/>
+				<% end %>
 			<% end %>
-			</div>
 		<% end %>
 	</body>
 	</html>

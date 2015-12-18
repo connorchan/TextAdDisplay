@@ -9,8 +9,8 @@
 		      <%= flash[:notice] %>
 		   </div>
 		<% end %>
-		<a data-toggle="collapse" data-target="#collapseinst"><h5>Show/Hide instructions</h5></a>
-		<div class="collapse" id="collapseinst">
+		<a data-toggle="collapse" data-target="#googlecollapse"><h5>Show/Hide <strong>Google AdWords</strong> instructions</h5></a>
+		<div class="collapse" id="googlecollapse">
 			<h2>Instructions for Use:</h2>
 			<br/>
 			<h4>3 Simple Steps!</h5>
@@ -34,11 +34,71 @@
 				<br/>
 			</ol>
 		</div>
+		<a data-toggle="collapse" data-target="#twittercollapse"><h5>Show/Hide <strong>Promoted Tweet</strong> instructions</h5></a>
+		<div class="collapse" id="twittercollapse">
+			<h2>Instructions for Use:</h2>
+			<br/>
+			<p>Begin by downloading our <%= link_to("CSV template", "/twitter.csv") %> for Twitter. Then fill in a new row in the template for each tweet and each campaign.</p>
+			<%= image_tag("twittercsv", size: "600x90", class:"twittercsv") %>
+			<br/>
+			<p>To start, you can customize each tweet with your own Twitter account's information. These fields are optional.</p>
+			<br/>
+			<ul>
+				<li><strong>Account Name:</strong> The name of your Twitter account</li>
+				<li><strong>Twitter Handle:</strong> Your Twitter handle (do not include the '@' sign in the CSV!)</li>
+				<li><strong>Twitter Profile Pic:</strong> URL to your Twitter account's profile picture</li>
+			</ul>
+			<br/>
+			<p>Then, start filling in the information for your campaign's promoted tweets.</p>
+			<ul>
+				<li><strong>Campaign (required):</strong> Campaign name</li>
+				<li><strong>Daily Budget:</strong> The total daily budget for the specific campaign</li>
+				<li><strong>Targeting Options:</strong> List out the targeting options used for the specific campaign</li>
+				<li><strong>Image Link:</strong> If your promoted tweet includes an image, host it somewhere on the web
+					and paste the link to it here.</li>
+				<li><strong>CTA:</strong> Twitter provides a list of built-in CTAs for promoted tweets. Choose one and include
+					it in a row of the CSV file:</li>
+				<br/>
+					<table class="table-bordered table-striped">
+						<tr><td>Read more</td></tr>
+						<tr><td>Shop now</td></tr>
+						<tr><td>View now</td></tr>
+						<tr><td>Visit now</td></tr>
+						<tr><td>Book now</td></tr>
+						<tr><td>Learn more</td></tr>
+						<tr><td>Play now</td></tr>
+						<tr><td>Bet now</td></tr>
+						<tr><td>Donate</td></tr>
+						<tr><td>Apply here</td></tr>
+						<tr><td>Quote here</td></tr>
+						<tr><td>Order now</td></tr>
+						<tr><td>Book tickets</td></tr>
+						<tr><td>Enroll now</td></tr>
+						<tr><td>Find a card</td></tr>
+						<tr><td>Get a quote</td></tr>
+						<tr><td>Get tickets</td></tr>
+						<tr><td>Locate a dealer</td></tr>
+						<tr><td>Order online</td></tr>
+						<tr><td>Preorder now</td></tr>
+						<tr><td>Schedule now</td></tr>
+						<tr><td>Sign up now</td></tr>
+						<tr><td>Subscribe</td></tr>
+						<tr><td>Register now</td></tr>
+					</table>
+				<br/>
+				<li><strong>Headline:</strong> A headline on a promoted tweet can be up to about 70 characters before being truncated</li>
+				<li><strong>URL:</strong> Display URL for your business website</li>
+				<li><strong>Tweet:</strong> Your tweet can be up to 140 characters without an image, 115 with an image</li>
+			</ul>
+		</div>
 		<div class="new-file">
 			<%= form_for @adfile, url: ad_files_path, html: { multipart: true } do |form| %>
 				<%= form.label :name, "Business/Client/Campaign Name:" %>
-				<%= form.text_field :name, class: "name-field" %>
-				<%= form.file_field :text_ad_file, class: "file-field" %>
+				<%= form.text_field :name, class: "name-field", :required => true %>
+				<br/>
+				<%= form.label :plaform, "Platform:" %>
+				<%= form.select :platform, ["Google AdWords", "Twitter", "Facebook"] %>
+				<%= form.file_field :text_ad_file, class: "file-field", :required => true %>
 				<%= form.submit "Save", class: "btn btn-primary" %>
 			<% end %>
 		</div>
