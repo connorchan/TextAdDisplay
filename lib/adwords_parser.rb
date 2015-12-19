@@ -119,12 +119,12 @@ class AdwordsParser
         @ads[row['Ad Group']] = []
       end
       #Add select components of text ads to the array, then add the array to the @ads hash
-      if !(row['Headline'].nil?) & !(row['Display URL'].nil?) & !(row['Description Line 1'].nil?) & !(row['Description Line 2'].nil?) & !(row['Final URL'].nil?)
+      if !(row['Headline'].nil?) & !(row['Display URL'].nil?) & !(row['Description Line 1'].nil?) & !(row['Description Line 2'].nil?)
         ad << row['Headline']
         ad << row['Display URL']
         ad << row['Description Line 1']
         ad << row['Description Line 2']
-        ad << row['Final URL']
+        ad << row['Final URL'] || "#"
         @ads[row['Ad Group']] << ad
       end
     end
@@ -162,6 +162,15 @@ class AdwordsParser
         @negs[row['Ad Group']] << negData
       end
     end
+  end
+  
+  def validate_file_type
+    adWordsHeaders = ["Campaign Type", "Ad Group", "Ad Group Type", "Description Line 1", "Description Line 2", "Final URL", "Keyword", "Criterion Type", "Max CPC"]
+    fileFirstRow = CSV.open("#{@filename}", 'r') { |csv| csv.first }  
+    if (fileFirstRow & adWordsHeaders).any?
+      fileType = "Google AdWords"
+    end
+    fileType || false
   end
   
 end

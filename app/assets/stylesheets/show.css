@@ -1,3 +1,7 @@
+p {
+	margin-left: 30px;
+}
+
 .adgroup {
 	margin-left: 10px;
 	border-left: 2px solid gray;
@@ -72,7 +76,6 @@ th {
 .tweet {
 	margin-left: 50px;
 	width: 550px;
-	height: 310px;
 	border: 1px solid gray;
 	border-radius: 15px;
 }

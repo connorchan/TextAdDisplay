@@ -61,24 +61,26 @@ class TweetsParser
       
       if !(row['Image Link'].nil?)
         promtweet << row['Image Link']
+      else
+        promtweet << 0
       end
       
       if !(row['CTA'].nil?)
         promtweet << row['CTA']
       else
-        promtweet << "Learn More"
+        promtweet << 0
       end
       
       if !(row['Headline'].nil?)
         promtweet << row['Headline']
       else
-        promtweet << "Check it Out"
+        promtweet << 0
       end
       
       if !(row['Display URL'].nil?)
         promtweet << row['Display URL']
       else
-        promtweet << "yoursite.com"
+        promtweet << 0
       end
       
       if !(row['Tweet'].nil?)
@@ -108,4 +110,14 @@ class TweetsParser
       @tweets[row['Campaign']] << promtweet
     end
   end
+  
+  def validate_file_type
+    headers = [["Account Name", "Twitter Handle", "Link to Profile Picture", "Campaign", "Daily Budget", "Targeting Options", "Image Link", "CTA", "Headline", "Display URL", "Tweet"]]
+    fileFirstRow = CSV.open("#{@filename}", 'r') { |csv| csv.first }
+    if headers.include? fileFirstRow
+      fileType = "Twitter"
+    end
+    fileType || false
+  end
+  
 end
