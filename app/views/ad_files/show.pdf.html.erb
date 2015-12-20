@@ -180,7 +180,7 @@
 									<br/>
 									<span class="url"><%= twitparse.tweets[campaign][j][3] %></span>
 								</div>
-								<% if !(twitparse.tweets[campaign][j][1].nil?) %>
+								<% if (twitparse.tweets[campaign][j][1] != 0) %>
 									<div class="cta">
 										<strong><%= twitparse.tweets[campaign][j][1] %></strong>
 									</div>
