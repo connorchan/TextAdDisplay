@@ -13,7 +13,7 @@
 			<% adparse.parseCampaigns()%>
 			<% if !(adparse.validate_file_type()) %>
 				<h3>Uh oh...</h3>
-				<p>This doesn't look like a valid AdWords CSV. Please re-upload and try again.</p>
+				<p>This doesn't look like a valid AdWords Editor CSV. Please re-upload and try again.</p>
 				<p><%= link_to("Return Home", ad_files_path) %></p>
 			<% else %>
 				<% for i in 0...adparse.campaigns.length %>
