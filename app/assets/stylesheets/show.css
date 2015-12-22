@@ -64,6 +64,8 @@ th {
 	color: green;
 }
 
+/***/
+
 .tweet {
 	font-family: Helvetica;
 }
@@ -141,4 +143,205 @@ th {
 	width: 100px;
 	height: 40px;
 	line-height: 40px;
+}
+
+/***/
+
+.adset h3 {
+	margin-left: 50px;
+}
+
+.adtype {
+	margin-left: 50px;
+}
+
+.fbdesktopad, .fbmobilead, .fbrcolad {
+	margin-left: 50px;
+}
+
+.fbdesktopad {
+	font-family: Helvetica;
+	width: 495px;
+	height: 485px;
+	border: 1px solid gray;
+}
+
+.fbprofname {
+	color: #003399;
+	font-size: 14px;
+}
+
+.sponsored {
+	font-size: 12px;
+	color: #585858;
+}
+
+.fbdeskpropic, .fbacctinfo, .desktoplike, .picdesktop, .desktopheadinf, .desktopbuttons {
+	margin: 5px 0 5px 15px;
+}
+
+.fbdesktopad, .fbpropic, .fbdeskpropic, .desktoplike, .bigadpic, .fbmobilead, .fbrcolad {
+	border-radius: 3px;
+}
+
+.fbdeskpropic, .fbacctinfo {
+	float: left;
+	display: inline-block;
+}
+
+.desktoplike {
+	float: right;
+	margin-right: 5px;
+	text-align: center;
+	display: inline-block;
+	border: 1px solid gray;
+	font-size: 13px;
+	color: #585858;
+	width: 95px;
+	height: 20px;
+}
+
+.desktoptext{
+	font-size: 13px;
+	float: left;
+	margin: 5px 15px 0 -10px;
+}
+
+.desktopheadinf {
+	line-height: 15px;
+	margin: 0 15px 0 20px;
+}
+
+.desktopheadinf .headline {
+	font-family: Times;
+	font-size: 18px;
+}
+
+.desktoplinkdesc, .deskdispurl {
+	font-size: 14px;
+} 
+
+.desktoplinkdesc {
+	margin-left: 0;
+}
+
+.fbdesktopad .headline {
+	color: black;
+	text-decoration: none;
+	margin-left: 0;
+}
+
+.deskdispurl {
+	color: #B0B0B0;
+}
+
+.deskcta {
+	display: inline-block;
+	float: right;
+	font-size: 13px;
+	margin: -15px 40px 0 0;
+	border: 1px solid #B0B0B0;
+	border-radius: 3px;
+	padding: 3px 5px 3px 5px;
+}
+
+/***************/
+.fbmobilead {
+	font-family: Helvetica;
+	width: 320px;
+	height: 410px;
+	border: 1px solid gray;
+}
+
+.mobprofname {
+	color: black;
+	font-size: 14px;
+}
+
+.fbmobilepropic, .fbacctinfo, .mobilelike, .picmobile, .mobileheadinf {
+	margin: 5px 0 5px 5px;
+}
+
+.fbmobilepropic, .fbacctinfo {
+	float: left;
+	display: inline-block;
+}
+
+.mobilelike {
+	float: right;
+	margin-right: 5px;
+	text-align: center;
+	display: inline-block;
+	font-size: 13px;
+	color: #585858;
+}
+
+.mobiletext{
+	font-size: 13px;
+	float: left;
+	margin: 5px 5px 0 -10px;
+}
+
+.mobileheadinf {
+	line-height: 15px;
+	margin: 0 15px 0 0;
+}
+
+.mobileheadinf p {
+	margin-left: 15px;
+}
+
+.mobileheadinf .mobheadline {
+	font-family: Times;
+	font-size: 20px;
+}
+
+.moblinkdesc, .mobdispurl {
+	font-size: 13px;
+}
+
+.mobdispurl {
+	color: #B0B0B0;
+	margin-left: 15px;
+}
+
+.mobcta {
+	display: inline-block;
+	float: right;
+	font-size: 13px;
+	margin: -15px 20px 0 0;
+	padding: 3px 5px 3px 5px;
+	border: 1px solid #B0B0B0;
+	border-radius: 3px;
+}
+
+/***************/
+.fbrcolad {
+	font-family: Helvetica;
+	height: 235px;
+	width: 280px;
+	border: 1px solid gray;
+}
+
+.rcolpic {
+	margin: 5px 10px 0 10px;
+}
+
+.fbrcolad p {
+	margin-left: 15px;
+}
+
+.rcolheadline, .rcolurl {
+	font-size: 12px;
+	color: #003399;
+}
+
+.rcolheadinf {
+	line-height: 5px;
+	margin: 0 10px 0 0;
+}
+
+.rcoltext {
+	margin: 0 10px 0 0;
+	font-size: 11px;
 }

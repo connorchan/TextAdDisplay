@@ -52,8 +52,8 @@
 			<p>Then, start filling in the information for your campaign's promoted tweets.</p>
 			<ul>
 				<li><strong>Campaign (required):</strong> Campaign name</li>
-				<li><strong>Daily Budget:</strong> The total daily budget for the specific campaign</li>
-				<li><strong>Targeting Options:</strong> List out the targeting options used for the specific campaign</li>
+				<li><strong>Daily Budget:</strong> The total daily budget for the specified campaign</li>
+				<li><strong>Targeting Options:</strong> List out the targeting options used for the specified campaign</li>
 				<li><strong>Image Link:</strong> If your promoted tweet includes an image, host it somewhere on the web
 					and paste the link to it here.</li>
 				<li><strong>CTA:</strong> Twitter provides a list of built-in CTAs for promoted tweets. Choose one and include
@@ -90,6 +90,51 @@
 				<li><strong>Display URL:</strong> Display URL for your business website</li>
 				<li><strong>Tweet:</strong> Your tweet can be up to 140 characters without an image, 115 with an image</li>
 			</ul>
+			<br/>
+		</div>
+		<a data-toggle="collapse" data-target="#facebookcollapse"><h5>Show/Hide <strong>Facebook Ads</strong> Instructions</h5></a>
+		<div class="collapse" id="facebookcollapse">
+			<h2>Instructions for Use:</h2>
+			<br/>
+			<p>Begin by downloading our <%= link_to("CSV template", "/facebook.csv") %> for Facebook. Then fill in a new row in the template for each Facebook ad and each campaign and ad set.</p>
+			<%= image_tag("facebookcsv", size: "675x90", class:"twittercsv") %>
+			<br/>
+			<p>To start, you can customize each Facebook ad with your own Facebook account's information. These fields are optional.</p>
+			<br/>
+			<ul>
+				<li><strong>Account Name:</strong> The name of your Facebook page</li>
+				<li><strong>Link to Profile Picture:</strong> URL to a profile picture for your page. (Warning: This will not work if you link directly to your page's profile picture. Please choose an image on a non-Facebook URL.)</li>
+			</ul>
+			<br/>
+			<p>Then, start filling in the information for your campaigns and ad sets.</p>
+			<br/>
+			<ul>
+				<li><strong>Campaign (required):</strong> Campaign name</li>
+				<li><strong>Ad Set (required):</strong> Ad set name</li>
+				<li><strong>Targeting Options:</strong> List out the targeting options used within the specified campaign</li>
+				<li><strong>Daily Budget:</strong> The total daily budget for the specified campaign</li>
+				<li><strong>Image Link:</strong> URL to the image used in your Facebook ad, hosted somewhere on the web</li>
+				<li><strong>Headline:</strong> Headline for your Facebook ad</li>
+				<li><strong>Link Description:</strong> Description for the link in your Facebook ad</li>
+				<li><strong>Main Text:</strong> Main ad copy for your Facebook ad</li>
+				<li><strong>CTA:</strong> Facebook provides a list of built-in CTAs for its ads. Choose one and include
+					it in a row of the CSV file:</li>
+				<br/>
+				<table class="table-bordered table-striped">
+					<tr><td>Shop Now</td></tr>
+					<tr><td>Book Now</td></tr>
+					<tr><td>Learn More</td></tr>
+					<tr><td>Sign Up</td></tr>
+					<tr><td>Download</td></tr>
+					<tr><td>Watch More</td></tr>
+					<tr><td>Contact Us</td></tr>
+					<tr><td>Apply Now</td></tr>
+					<tr><td>Donate Now</td></tr>
+				</table>
+				<br/>
+				<li><strong>Display URL:</strong> Display URL for your business website</li>
+			</ul>
+			<br/>
 		</div>
 		<div class="new-file">
 			<%= form_for @adfile, url: ad_files_path, html: { multipart: true } do |form| %>

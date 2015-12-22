@@ -44,7 +44,7 @@ class TweetsParser
     twits = CSV.foreach("#{@filename}", headers:true) do |row|
       campaign = row['Campaign']
       data = []
-      if !(@campData.has_key?("campaign"))
+      if !(@campData.has_key?(campaign))
         data << row['Daily Budget']
         data << row['Targeting Options']
         @campData[campaign] = data

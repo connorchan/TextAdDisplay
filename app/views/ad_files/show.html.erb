@@ -32,7 +32,7 @@
 							</tr>
 							<tr>
 								<td><strong>Dates</strong></td>
-								<td><%= adparse.campData[campaign]['Start Date'] %> - <%= adparse.campData[campaign['End Date']] || "TBD" %></td>
+								<td><%= adparse.campData[campaign]['Start Date'] %> - <%= adparse.campData[campaign]['End Date'] || "TBD" %></td>
 							</tr>
 							<tr>
 								<td><strong>Campaign Type</strong></td>
@@ -143,7 +143,7 @@
 							</tr>
 							<tr>
 								<td><strong>Targeting Options</strong></td>
-								<td><%= twitparse.campData[campaign][1]%></td>
+								<td><%= twitparse.campData[campaign][1] %></td>
 							</tr>
 						</table>
 					</div>
@@ -218,7 +218,7 @@
 										</span>
 								</div>
 								<br/>
-								<span class="tweetxt"><%= twitparse.tweets[campaign][j][4] %></span>
+								<span class="tweetxt"><%= truncate(twitparse.tweets[campaign][j][4], length: 140) %></span>
 								<br/>
 								<br/>
 								<div class="headurl">
@@ -244,6 +244,201 @@
 							</div>
 						<% end %>
 						<br/>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% elsif @adfile.platform == "Facebook" %>
+			<% fbparse = FacebookParser.new("#{@adfile.text_ad_file.path}") %>
+			<% fbparse.parseCampaigns() %>
+			<% if !(fbparse.validate_file_type) %>
+				<h3>Uh oh...</h3>
+				<p>This CSV doesn't seem to match our Facebook template. Please download our CSV template for Facebook and try re-uploading again.</p>
+				<p><%= link_to("Return Home", ad_files_path) %></p>
+			<% else %>
+				<% for i in 0...fbparse.campaigns.length %>
+					<% campaign = fbparse.campaigns[i] %>
+					<% adsets = fbparse.agMap[campaign] %>
+					<div class="campaign">
+						<h3>Campaign: <%= campaign %></h3>
+						<table class="campinfo">
+							<tr>
+								<td><strong>Daily Budget</strong></td>
+								<% if (fbparse.campData[campaign][0] != 1) %>
+									<td>$<%= fbparse.campData[campaign][0] %></td>
+								<% else %>
+									<td>$0</td>
+								<% end %>
+							</tr>
+							<tr>
+								<td><strong>Targeting Options</strong></td>
+								<% if (fbparse.campData[campaign][1] != 1) %>
+									<td><%= fbparse.campData[campaign][1] %></td>
+								<% else %>
+									<td>$0</td>
+								<% end%>
+							</tr>
+						</table>
+					</div>
+					<br/>
+					<% for j in 0...adsets.length %>
+						<% adset = adsets[j] %>
+						<div class="adset">
+							<h3>Ad Set: <%= adset %></h3>
+							<% for k in 0...fbparse.ads[adset].length %>
+								<h3 class="adtype">Desktop News Feed Post #<%=k+1%>:</h3>
+								<div class="fbdesktopad">
+									<div class="fbdeskpropic">
+										<% if (fbparse.ads[adset][k][1] != 0) %>
+											<%= image_tag("#{fbparse.ads[adset][k][1]}", class: "fbpropic", height: "40", width: "40") %>
+										<% else %>
+											<%= image_tag("nopropic.jpg", class: "fbpropic", height: "40", width: "40")%>
+										<% end %>
+									</div>
+									<div class="fbacctinfo">
+										<% if (fbparse.ads[adset][k][0] != 0) %>
+											<span class="fbprofname"><strong><%= fbparse.ads[adset][k][0] %></strong></span>
+										<% else %>
+											<span class="fbprofname"><strong>Your Profile</strong></span>
+										<% end %>
+										<br/>
+										<span class="sponsored">Sponsored</span>
+									</div>
+									<div class="desktoplike">
+										<strong>Like Page</strong>
+									</div>
+									<br/>
+									<br/>
+									<div class="desktoptext">
+										<% if (fbparse.ads[adset][k][0] != 0) %>
+											<p><%= truncate(fbparse.ads[adset][k][5], length: 90) %></p>
+										<% else %>
+											<p>Enter your Facebook post text here...</p>
+										<% end %>
+									</div>
+									<div class="picdesktop">
+										<% if (fbparse.ads[adset][k][2] != 0) %>
+											<%= image_tag("#{fbparse.ads[adset][k][2]}", class: "bigadpic", height: "250", width: "465") %>
+										<% else %>
+											<%= image_tag("noadpic.jpeg", class: "bigadpic", height: "250", width: "465") %>
+										<% end %>
+									</div>
+									<div class="desktopheadinf">
+										<% if (fbparse.ads[adset][k][3] != 0) %>
+											<p class="headline"><%= truncate(fbparse.ads[adset][k][3], length: 25) %></p>
+										<% else %>
+											<p class="headline">Insert a Headline</p>
+										<% end%>
+										<% if (fbparse.ads[adset][k][4] != 0)%>
+											<p class="desktoplinkdesc"><%= truncate(fbparse.ads[adset][k][4], length: 120) %></p>
+										<% else %>
+											<p class="desktoplinkdesc">Enter a link description here...</p>
+										<% end %>
+										<% if (fbparse.ads[adset][k][7] != 0) %>
+											<span class="deskdispurl"><%= fbparse.ads[adset][k][7] %></span>
+										<% else %>
+											<span class="deskdispurl">www.yoursite.com</span>
+										<% end %>
+									</div>
+									<div class="deskcta">
+										<% if (fbparse.ads[adset][k][6] != 0) %>
+											<strong><%= truncate(fbparse.ads[adset][k][6], length: 20) %></strong>
+										<% else %>
+											<strong>Call To Action</strong>
+										<% end %>
+									</div>
+								</div>
+								<br/>
+								<h3 class="adtype">Mobile News Feed Post #<%=k+1%>:</h3>
+								<div class="fbmobilead">
+									<div class="fbmobilepropic">
+										<% if (fbparse.ads[adset][k][1] != 0) %>
+											<%= image_tag("#{fbparse.ads[adset][k][1]}", class: "fbpropic", height: "40", width: "40") %>
+										<% else %>
+											<%= image_tag("nopropic.jpg", class: "fbpropic", height: "40", width: "40")%>
+										<% end %>
+									</div>
+									<div class="fbacctinfo">
+										<% if (fbparse.ads[adset][k][0] != 0 )%>
+											<span class="mobprofname"><strong><%= fbparse.ads[adset][k][0] %></strong></span>
+										<% else %>
+											<span class="mobprofname"><strong>Your Profile</strong></span>
+										<% end %>
+										<br/>
+										<span class="sponsored">Sponsored</span>
+									</div>
+									<div class="mobiletext">
+										<% if (fbparse.ads[adset][k][5] != 0) %>
+											<p><%= truncate(fbparse.ads[adset][k][5], length: 110) %></p>
+										<% else %>
+											<p>Enter text for your mobile Facebook ad here...</p>
+										<% end %>
+									</div>
+									<div class="picmobile">
+										<% if (fbparse.ads[adset][k][2] != 0) %>
+											<%= image_tag("#{fbparse.ads[adset][k][2]}", class: "mobileadpic", height: "160", width: "300") %>
+										<% else %>
+											<%= image_tag("noadpic.jpeg", class: "mobileadpic", height: "160", width: "300") %>
+										<% end %>
+									</div>
+									<div class="mobileheadinf">
+										<% if (fbparse.ads[adset][k][3] != 0) %>
+											<p class="mobheadline"><%= truncate(fbparse.ads[adset][k][3], length: 50) %></p>
+										<% else %>
+											<p class="mobheadline">Insert Mobile Headline</p>
+										<% end %>
+										<% if (fbparse.ads[adset][k][4] != 0) %>
+											<p class="moblinkdesc"><%= truncate(fbparse.ads[adset][k][4], length: 60) %></p>
+										<% else %>
+											<p class="moblinkdesc">Mobile link description...</p>
+										<% end %>
+										<% if (fbparse.ads[adset][k][7] != 0) %>
+											<span class="mobdispurl"><%= fbparse.ads[adset][k][7] %></span>
+										<% else %>
+											<span class="mobdispurl">www.yoursite.com</span>
+										<% end %>
+									</div>
+									<div class="mobcta">
+										<% if (fbparse.ads[adset][k][6] != 0) %>
+											<strong><%= truncate(fbparse.ads[adset][k][6], length: 20) %></strong>
+										<% else %>
+											<strong>Call to Action</strong>
+										<% end %>
+									</div>
+								</div>
+								<br/>
+								<h3 class="adtype">Right Column Ad #<%=k+1%>:</h3>
+								<div class="fbrcolad">
+									<div class="rcolpic">
+										<% if (fbparse.ads[adset][k][2] != 0) %>
+											<%= image_tag("#{fbparse.ads[adset][k][2]}", class: "rcoladpic", height: "135", width: "260") %>
+										<% else %>
+											<%= image_tag("noadpic.jpeg", class: "rcoladpic", height: "135", width: "260") %>
+										<% end %>
+									</div>
+									<div class="rcolheadinf">
+										<% if (fbparse.ads[adset][k][3] != 0) %>
+											<p class="rcolheadline"><strong><%= truncate(fbparse.ads[adset][k][3], length: 25) %></strong></p>
+										<% else %>
+											<p class="rcolheadline"><strong>Right Column Headline</strong></p>
+										<% end %>
+										<% if (fbparse.ads[adset][k][7] != 0) %>
+											<p class="rcolurl"><%= fbparse.ads[adset][k][7] %></p>
+										<% else %>
+											<p class="rcolurl">www.yoursite.com</p>
+										<% end %>
+									</div>
+									<div class="rcoltext">
+										<% if (fbparse.ads[adset][k][4] != 0) %>
+											<p><%= truncate(fbparse.ads[adset][k][4], length: 90) %></p>
+										<% else %>
+											<p>Right column ad text here...</p>
+										<% end %>
+									</div>
+								</div>
+							</div>
+							<br/>
+							<hr>
+						<% end %>
 					<% end %>
 				<% end %>
 			<% end %>
