@@ -137,7 +137,7 @@
 						<table class="campinfo">
 							<tr>
 								<td><strong>Daily Budget</strong></td>
-								<td>$<%= twitparse.campData[campaign][0] %></td>
+								<td><%= twitparse.campData[campaign][0] %></td>
 							</tr>
 							<tr>
 								<td><strong>Targeting Options</strong></td>
@@ -262,7 +262,7 @@
 							<tr>
 								<td><strong>Daily Budget</strong></td>
 								<% if (fbparse.campData[campaign][0] != 1) %>
-									<td>$<%= fbparse.campData[campaign][0] %></td>
+									<td><%= fbparse.campData[campaign][0] %></td>
 								<% else %>
 									<td>$0</td>
 								<% end %>

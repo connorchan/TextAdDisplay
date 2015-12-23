@@ -15,3 +15,11 @@ h1, p {
 .col-md-4 h4, .col-md-4 p {
 	text-align: center;
 }
+
+h3 {
+	text-align: center;
+}
+
+.upwordcsv, .upwordtweet {
+	border: 1px solid black;
+}
