@@ -248,7 +248,7 @@
 		<% elsif @adfile.platform == "Facebook" %>
 			<% fbparse = FacebookParser.new("#{@adfile.text_ad_file.path}") %>
 			<% fbparse.parseCampaigns() %>
-			<% if !(fbparse.validate_file_type) %>
+			<% if !(fbparse.validate_file_type()) %>
 				<h3>Uh oh...</h3>
 				<p>This CSV doesn't seem to match our Facebook template. Please download our CSV template for Facebook and try re-uploading again.</p>
 				<p><%= link_to("Return Home", ad_files_path) %></p>
