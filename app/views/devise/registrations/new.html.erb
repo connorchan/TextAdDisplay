@@ -4,6 +4,12 @@
 		<%= stylesheet_link_tag("users.css") %>
 	</head>
 	<body>
+		<% if !flash[:notice].blank? || !flash[:alert].blank? %>
+		   <div class = "alert alert-info">
+		      <%= flash[:notice] %>
+			  <%= flash[:alert] %>
+		   </div>
+		<% end %>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
