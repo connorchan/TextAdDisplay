@@ -8,7 +8,7 @@ AdShow is a web app (in development) for previewing digital ad campaign set-ups 
 Using pre-built CSV templates for Facebok and Twitter (and the CSV export from Google AdWords Editor), users can upload data and creative directly into their accounts and then download a formatted preview of what their ads will look like, along with important data like daily budgets and targeting options.
 
 == Database
-AdShow uses PostgreSQL to store user info (via Devise) and file uploads.
+AdShow uses PostgreSQL to store user info (via Devise) and info about file uploads.
 
 == Library
 Included in the lib folder are three Ruby classes used to parse different CSV uploads: one for AdWords Editor CSVs, and two for our custom Facebook and Twitter CSV templates. The data that these classes read are used to populate the Show view for the ad_files model. 
