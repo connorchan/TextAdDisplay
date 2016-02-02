@@ -9,7 +9,7 @@
 		</div>
 		<hr/>
 		<% if @adfile.platform == "Google AdWords" %>
-			<% adparse = AdwordsParser.new("#{@adfile.text_ad_file.path}") %>
+			<% adparse = AdwordsParser.new("#{@adfile.text_ad_file.url}") %>
 			<% adparse.parseCampaigns()%>
 			<% if !(adparse.validate_file_type()) %>
 				<h3>Uh oh...</h3>
@@ -125,7 +125,7 @@
 				<% end %>
 			<% end %>
 		<% elsif @adfile.platform == "Twitter" %>
-			<% twitparse = TweetsParser.new("#{@adfile.text_ad_file.path}") %>
+			<% twitparse = TweetsParser.new("#{@adfile.text_ad_file.url}") %>
 			<% twitparse.parseTweets() %>
 			<% if !(twitparse.validate_file_type) %>
 				<h3>Uh oh...</h3>
@@ -248,7 +248,7 @@
 				<% end %>
 			<% end %>
 		<% elsif @adfile.platform == "Facebook" %>
-			<% fbparse = FacebookParser.new("#{@adfile.text_ad_file.path}") %>
+			<% fbparse = FacebookParser.new("#{@adfile.text_ad_file.url}") %>
 			<% fbparse.parseCampaigns() %>
 			<% if !(fbparse.validate_file_type) %>
 				<h3>Uh oh...</h3>
