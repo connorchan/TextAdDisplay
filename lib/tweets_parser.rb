@@ -6,7 +6,7 @@ class TweetsParser
     @campaigns = []
     @campData = {}
     @tweets = {}
-    @filename = filename
+    @filename = open(filename)
   end
   
   def campaigns
@@ -29,7 +29,7 @@ class TweetsParser
   
   def getCampaigns
     #Open Twitter CSV
-    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+    twits = CSV.foreach("#{@filename.path}", headers:true) do |row|
       campName = row['Campaign']
       #If campaign name doesn't exist in the array, add it
       if (@campaigns.include? campName) || (campName.nil?)
@@ -41,7 +41,7 @@ class TweetsParser
   end
   
   def getCampaignData
-    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+    twits = CSV.foreach("#{@filename.path}", headers:true) do |row|
       campaign = row['Campaign']
       data = []
       if !(@campData.has_key?(campaign))
@@ -53,7 +53,7 @@ class TweetsParser
   end
   
   def getTweets
-    twits = CSV.foreach("#{@filename}", headers:true) do |row|
+    twits = CSV.foreach("#{@filename.path}", headers:true) do |row|
       promtweet = []
       if (@tweets[row['Campaign']].nil?)
         @tweets[row['Campaign']] = []
@@ -113,7 +113,7 @@ class TweetsParser
   
   def validate_file_type
     headers = [["Account Name", "Twitter Handle", "Link to Profile Picture", "Campaign", "Daily Budget", "Targeting Options", "Image Link", "CTA", "Headline", "Display URL", "Tweet"]]
-    fileFirstRow = CSV.open("#{@filename}", 'r') { |csv| csv.first }
+    fileFirstRow = CSV.open("#{@filename.path}", 'r') { |csv| csv.first }
     if headers.include? fileFirstRow
       fileType = "Twitter"
     end

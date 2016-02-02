@@ -8,7 +8,7 @@ class FacebookParser
     @adSets = []
     @agMap = {}
     @ads = {}
-    @filename = filename
+    @filename = open(filename)
   end
   
   def campaigns
@@ -40,7 +40,7 @@ class FacebookParser
   end
   
   def getCampaigns
-    facebook = CSV.foreach("#{@filename}", headers:true) do |row|
+    facebook = CSV.foreach("#{@filename.path}", headers:true) do |row|
       campName = row['Campaign']
       if (@campaigns.include? campName) || (campName.nil?)
         next
@@ -51,7 +51,7 @@ class FacebookParser
   end
   
   def getCampaignData
-    facebook = CSV.foreach("#{@filename}", headers:true) do |row|
+    facebook = CSV.foreach("#{@filename.path}", headers:true) do |row|
       campaign = row['Campaign']
       data = []
       if !(@campData.has_key?("#{campaign}"))
@@ -63,7 +63,7 @@ class FacebookParser
   end
   
   def getAdSets
-    facebook = CSV.foreach("#{@filename}", headers:true) do |row|
+    facebook = CSV.foreach("#{@filename.path}", headers:true) do |row|
       adSet = row['Ad Group']
       if (@adSets.include? adSet) || (adSet.nil?)
         next
@@ -74,7 +74,7 @@ class FacebookParser
   end
   
   def mapAdSets
-    facebook = CSV.foreach("#{@filename}", headers:true) do |row|
+    facebook = CSV.foreach("#{@filename.path}", headers:true) do |row|
       if (@agMap[row['Campaign']].nil?)
         @agMap[row['Campaign']] = []
       end
@@ -86,7 +86,7 @@ class FacebookParser
   end
   
   def getAds
-    facebook = CSV.foreach("#{@filename}", headers:true) do |row|
+    facebook = CSV.foreach("#{@filename.path}", headers:true) do |row|
       ad = []
       if (@ads[row['Ad Set']].nil?)
         @ads[row['Ad Set']] = []
@@ -146,7 +146,7 @@ class FacebookParser
   
   def validate_file_type
     headers = [["Account Name", "Link to Profile Picture", "Campaign", "Ad Set", "Targeting Options", "Daily Budget", "Image Link", "Headline", "Link Description", "Main Text", "CTA", "Display URL"]]
-    fileFirstRow = CSV.open("#{@filename}", 'r') { |csv| csv.first }
+    fileFirstRow = CSV.open("#{@filename.path}", 'r') { |csv| csv.first }
     if headers.include? fileFirstRow
       fileType = "Facebook"
     end
