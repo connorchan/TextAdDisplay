@@ -11,7 +11,7 @@ class AdwordsParser
     @ads = {}
     @kws = {}
     @negs = {}
-    @filename = filename
+    @filename = open(filename)
   end
   
   def campaigns
@@ -59,7 +59,7 @@ class AdwordsParser
   
   def getCampaigns
     #Open AdWords CSV
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       campName = row['Campaign']
       #If campaign name doesn't exist in the array, add it
       if (@campaigns.include? campName) || (campName.nil?)
@@ -71,7 +71,7 @@ class AdwordsParser
   end
   
   def getCampaignData
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       #Get the first data row for each campaign in the CSV
       if !(row['Campaign Type'].nil?)
         @campData[row['Campaign']] = row
@@ -80,7 +80,7 @@ class AdwordsParser
   end
   
   def getAdGroups
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       adGroup = row['Ad Group']
       #If Ad Group hasn't been collected yet, add it to the array
       if (@adGroups.include? adGroup) || (adGroup.nil?)
@@ -92,7 +92,7 @@ class AdwordsParser
   end
   
   def getAdGroupData
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       #Get the first data row for each Ad Group in the CSV
       if !(row['Ad Group Type'].nil?)
         @agData[row['Ad Group']] = row
@@ -101,7 +101,7 @@ class AdwordsParser
   end
   
   def mapAdGroups
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       if (@agMap[row['Campaign']].nil?)
         @agMap[row['Campaign']] = []
       end
@@ -113,7 +113,7 @@ class AdwordsParser
   end
   
   def getAds
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       ad = []
       if (@ads[row['Ad Group']].nil?)
         @ads[row['Ad Group']] = []
@@ -131,7 +131,7 @@ class AdwordsParser
   end
   
   def getKeywords
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       kwData = []
       if (@kws[row['Ad Group']].nil?)
         @kws[row['Ad Group']] = []
@@ -151,7 +151,7 @@ class AdwordsParser
   end
   
   def getNegatives
-    adwords = CSV.foreach("#{@filename}", headers:true) do |row|
+    adwords = CSV.foreach("#{@filename.path}", headers:true) do |row|
       negData = []
       if (@negs[row['Ad Group']].nil?)
         @negs[row['Ad Group']] = []
@@ -166,7 +166,7 @@ class AdwordsParser
   
   def validate_file_type
     adWordsHeaders = ["Campaign Type", "Ad Group", "Ad Group Type", "Description Line 1", "Description Line 2", "Final URL", "Keyword", "Criterion Type", "Max CPC"]
-    fileFirstRow = CSV.open("#{@filename}", 'r') { |csv| csv.first }  
+    fileFirstRow = CSV.open("#{@filename.path}", 'r') { |csv| csv.first }  
     if (fileFirstRow & adWordsHeaders).any?
       fileType = "Google AdWords"
     end
