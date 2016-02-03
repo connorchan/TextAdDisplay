@@ -33,8 +33,6 @@ gem 'wkhtmltopdf-binary'
 
 gem 'devise'
 
-gem 'wkhtmltopdf-binary-edge', '~> 0.12.2.1'
-
 gem 'pg'
 
 gem 'rails_12factor', group: :production
