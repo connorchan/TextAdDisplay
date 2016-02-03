@@ -29,8 +29,6 @@ gem 'paperclip', '~> 4.3'
 
 gem 'wicked_pdf'
 
-gem 'wkhtmltopdf-binary'
-
 gem 'devise'
 
 gem 'pg'
