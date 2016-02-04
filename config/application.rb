@@ -26,6 +26,6 @@ module AdDisplay
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
-    config.assets.precompile += ['ad_files.scss', 'application.scss', 'filesindex.css', 'home.css', 'new.css', 'show.css', 'users.css', 'upword-logo.png']
+    config.assets.precompile += ['ad_files.scss', 'application.scss', 'filesindex.css', 'home.css', 'new.css', 'show.css', 'users.css', 'upword-logo.png', 'upword-logo-no-alpha.png']
   end
 end
