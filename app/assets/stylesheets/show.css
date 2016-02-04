@@ -82,6 +82,7 @@ th {
 	width: 550px;
 	border: 1px solid gray;
 	border-radius: 15px;
+	page-break-inside: avoid;
 }
 
 .tweetxt{
@@ -166,6 +167,7 @@ th {
 	width: 495px;
 	height: 485px;
 	border: 1px solid gray;
+	page-break-inside: avoid;
 }
 
 .fbprofname {
@@ -253,6 +255,7 @@ th {
 	width: 320px;
 	height: 380px;
 	border: 1px solid gray;
+	page-break-inside: avoid;
 }
 
 .mobprofname {
@@ -323,6 +326,7 @@ th {
 	height: 235px;
 	width: 280px;
 	border: 1px solid gray;
+	page-break-inside: avoid;
 }
 
 .rcolpic {
