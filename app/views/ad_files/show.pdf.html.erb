@@ -123,7 +123,7 @@
 				<% end %>
 			<% end %>
 		<% elsif @adfile.platform == "LinkedIn" %>
-			<% linkedinparse = LinkedinParser.new("#{@adfile.text_ad_file.path}" )%>
+			<% linkedinparse = LinkedinParser.new("#{@adfile.text_ad_file.url}" )%>
 			<% linkedinparse.parsePosts() %>
 			<% if !(linkedinparse.validate_file_type()) %>
 				<h3>Uh oh...</h3>
