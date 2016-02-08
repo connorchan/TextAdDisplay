@@ -120,7 +120,89 @@
 						<br/>
 						<hr/>
 					<% end %>
+				<% end %>
+			<% end %>
+		<% elsif @adfile.platform == "LinkedIn" %>
+			<% linkedinparse = LinkedinParser.new("#{@adfile.text_ad_file.path}" )%>
+			<% linkedinparse.parsePosts() %>
+			<% if !(linkedinparse.validate_file_type()) %>
+				<h3>Uh oh...</h3>
+				<p>This CSV doesn't seem to match our LinkedIn template. Please download our CSV template for LinkedIn and try re-uploading again.</p>
+				<p><%= link_to("Return Home", ad_files_path) %></p>
+			<% else %>
+				<% for i in 0...linkedinparse.campaigns.length %>
+					<% campaign = linkedinparse.campaigns[i] %>
+					<div class="campaign">
+						<h3>Campaign: <%= linkedinparse.campaigns[i] %></h3>
+						<table class="campinfo">
+							<tr>
+								<td><strong>Daily Budget</strong></td>
+								<td><%= linkedinparse.campData[campaign][0] %></td>
+							</tr>
+							<tr>
+								<td><strong>Targeting Options</strong></td>
+								<td><%= linkedinparse.campData[campaign][1] %></td>
+							</tr>
+						</table>
 					</div>
+					<br/>
+					<% for j in 0...linkedinparse.posts[campaign].length %>
+						<h3 class="adtype">Sponsored Update #<%=j+1%>:</h3>
+						<div class="linpost">
+							<div class="sponsup">
+								<div class="linfollow">
+									Follow
+								</div>
+								<div class="linprofpic">
+									<%= image_tag(embed_remote_image("#{linkedinparse.posts[campaign][j][1]}", 'image/jpg'), height: "50", width: "50")%>
+								</div>
+								<div class="linacct">
+									<span class="linprofname"><strong><%= linkedinparse.posts[campaign][j][0] %></strong></span> shared:
+									<br/>
+									<span class="linspons">Sponsored</span>
+								</div>
+								<hr/>
+								<div class="lintext">
+									<%= truncate(linkedinparse.posts[campaign][j][3], length: 150) %>
+									<span class="linurl"><%= linkedinparse.posts[campaign][j][7] %></span>
+								</div>
+								<div class="sponslink">
+									<%= image_tag(embed_remote_image("#{linkedinparse.posts[campaign][j][2]}", 'image/jpg'), height: "95", width: "160")%>
+									<h4><%= linkedinparse.posts[campaign][j][6] %></h4>
+									<span class="lindispurl"><strong><%= truncate(linkedinparse.posts[campaign][j][4], length: 70) %></strong> &middot; </span> <%= truncate(linkedinparse.posts[campaign][j][5], length: 100) %>
+								</div>
+								<br/>
+								<br/>
+								<div class="lininteract">
+									Like &middot; Comment &middot; Share &middot;
+								</div>
+							</div>
+						</div>
+						<br/>
+						<div class="mlinpost">
+							<div class="mlinfollow">
+								<strong>+</strong>
+							</div>
+							<div class="mprofinfo">
+								<%= image_tag(embed_remote_image("#{linkedinparse.posts[campaign][j][1]}", 'image/jpg'), height: "50", width: "50")%>
+								<span class="mprofname"><strong><%= linkedinparse.posts[campaign][j][0] %></strong></span>
+								<br/>
+								<span class=linspons>Sponsored</span>
+							</div>
+							<br/>
+							<div class="mlintext">
+								<%= truncate(linkedinparse.posts[campaign][j][3], length: 150) %>
+							</div>
+							<hr/>
+							<div class="mlinkinfo">
+								<%= image_tag(embed_remote_image("#{linkedinparse.posts[campaign][j][2]}", 'image/jpg'), height: "180", width: "325", class: "mpostpic")%>
+								<strong><%= linkedinparse.posts[campaign][j][6] %></strong>
+								<br/>
+								<span class="mlindispurl"><%= truncate(linkedinparse.posts[campaign][j][4], length: 70) %></span>
+							</div>
+						</div>
+						<br/>
+					<% end %>
 				<% end %>
 			<% end %>
 		<% elsif @adfile.platform == "Twitter" %>
@@ -147,6 +229,7 @@
 					</div>
 					<br/>
 					<% for j in 0...twitparse.tweets[campaign].length %>
+						<h3 class="adtype">Promoted Tweet #<%=j+1%>:</h3>
 						<% if (twitparse.tweets[campaign][j][0] != 0) %>
 							<div class="tweet" height="330">
 								<div class="twitpic">

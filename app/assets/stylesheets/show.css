@@ -4,6 +4,8 @@ p {
 	margin-left: 30px;
 }
 
+/****Google Text Ad*****/
+
 .adgroup {
 	margin-left: 10px;
 	border-left: 2px solid gray;
@@ -66,7 +68,7 @@ th {
 	color: green;
 }
 
-/***/
+/****Promoted Tweet*****/
 
 .tweet {
 	font-family: Helvetica;
@@ -148,7 +150,7 @@ th {
 	line-height: 40px;
 }
 
-/***/
+/****FB Desktop Ad*****/
 
 .adset h3 {
 	margin-left: 50px;
@@ -249,7 +251,7 @@ th {
 	padding: 3px 5px 3px 5px;
 }
 
-/***************/
+/*******FB Mobile Ad********/
 .fbmobilead {
 	font-family: Helvetica;
 	width: 320px;
@@ -320,7 +322,7 @@ th {
 	border-radius: 3px;
 }
 
-/***************/
+/*******FB Right Column Ad********/
 .fbrcolad {
 	font-family: Helvetica;
 	height: 235px;
@@ -350,4 +352,119 @@ th {
 .rcoltext {
 	margin: 0 10px 0 0;
 	font-size: 11px;
+}
+
+/*****LinkedIn*****/
+
+.linpost {
+	font-family: Helvetica;
+	font-size: 14px;
+	page-break-inside: avoid;
+	margin-left: 50px;
+	display: block;
+}
+
+.sponsup {
+	width: 685px;
+	height: 300px;
+	padding: 10px 5px 0 5px;
+	border: 1px solid gray;
+}
+
+.linprofname, .lininteract, .linurl {
+	color: #0F8CD6;
+}
+
+.linacct {
+	margin-bottom: 20px;
+}
+
+.linspons {
+	font-size: 10px;
+	color: gray;
+}
+
+.linprofpic, .sponsup, .sponslink {
+	display: inline-block;
+}
+
+.linprofpic {
+	float: left;
+	margin-right: 10px;
+}
+
+.linfollow {
+	float: right;
+	text-align: center;
+	font-size: 12px;
+	margin-right: 50px;
+	width: 70px;
+	height: 25px;
+	line-height: 25px;
+	border: 1px solid #0CB7F0;
+	color: #0F8CD6;
+	border-radius: 3px;
+}
+
+.sponslink {
+	margin-top: 5px;
+	width: 675px;
+}
+
+.sponslink {
+	border: 1px solid #F2F2F2;
+}
+
+.lindispurl {
+	color: gray;
+}
+
+.sponslink img {
+	float: left;
+	border-right: 1px solid #F2F2F2;
+	margin-right: 5px;
+}
+
+/**LinkedIn Mobile**/
+.mlinpost {
+	font-family: Helvetica;
+	width: 335px;
+	height: 420px;
+	padding: 10px 5px 0 5px;
+	border: 1px solid gray;
+	margin-left: 50px;
+	page-break-inside: avoid;
+}
+
+.mprofinfo {
+	display: block;
+}
+
+.mprofinfo img {
+	margin-right: 5px;
+}
+
+.mprofinfo img, .mprofname {
+	float: left;
+}
+
+.mlinfollow {
+	float: right;
+	font-size: 36px;
+	text-align: center;
+	border-radius: 30px;
+	height: 35px;
+	width: 35px;
+	line-height: 30px;
+	border: 1px solid #0CB7F0;
+	color: #0F8CD6;
+}
+
+.mlinkinfo {
+	font-size: 12px;
+	border: 1px solid #F2F2F2;
+}
+
+.mlindispurl {
+	color: gray;
 }

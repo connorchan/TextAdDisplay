@@ -136,13 +136,41 @@
 			</ul>
 			<br/>
 		</div>
+		<a data-toggle="collapse" data-target="#linkedincollapse"><h5>Show/Hide <strong>LinkedIn Sponsored Update</strong> instructions</h5></a>
+		<div class="collapse" id="linkedincollapse">
+			<h2>Instructions for Use:</h2>
+			<br/>
+			<p>Begin by downloading our <%= link_to("CSV template", "/linkedin.csv") %> for LinkedIn. Then fill in a new row in the template for each Sponsored Update and each campaign.</p>
+			<%= image_tag("linkedincsv", size: "695x90", class:"twittercsv") %>
+			<br/>
+			<p>To start, you can customize each LinkedIn Sponsored Update with your own LinkedIn account's information. These fields are optional.</p>
+			<br/>
+			<ul>
+				<li><strong>Account Name: </strong>Name of your brand's LinkedIn page.</li>
+				<li><strong>Link to Profile Picture: </strong>URL to a profile picture for your page. (Warning: This will not work if you link directly to your page's profile picture. Please choose an image on a non-LinkedIn URL.)</li>
+			</ul>
+			<br/>
+			<p>Then, start filling in the information for your campaigns and ad sets.</p>
+			<ul>
+				<li><strong>Campaign (Required): </strong>Campaign name</li>
+				<li><strong>Daily Budget: </strong>The total daily budget for the specified campaign</li>
+				<li><strong>Targeting Info: </strong>Any information about the targeting options used for your campaign.</li>
+				<li><strong>Image Link:</strong>Link to the image for your Sponsored Update post.</li>
+				<li><strong>Introduction: </strong>An introduction to your sponsored content (truncated at around 150 characters).</li>
+				<li><strong>Title: </strong>A title for your sponsored content (truncated at around 70 characters).</li>
+				<li><strong>Description: </strong>A description for your sponsored content (truncated at around 100 characters).</li>
+				<li><strong>Display URL: </strong>The display URL for your landing page.</li>
+				<li><strong>Landing Page URL: </strong>The full URL for your landing page.</li>
+			</ul>
+		</div>
+		<br/>
 		<div class="new-file">
 			<%= form_for @adfile, url: ad_files_path, html: { multipart: true } do |form| %>
 				<%= form.label :name, "Business/Client/Campaign Name:" %>
 				<%= form.text_field :name, class: "name-field", :required => true %>
 				<br/>
 				<%= form.label :plaform, "Platform:" %>
-				<%= form.select :platform, ["Google AdWords", "Twitter", "Facebook"] %>
+				<%= form.select :platform, ["Google AdWords", "Twitter", "Facebook", "LinkedIn"] %>
 				<%= form.file_field :text_ad_file, class: "file-field", :required => true %>
 				<%= form.submit "Save", class: "btn btn-primary" %>
 			<% end %>
