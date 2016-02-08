@@ -21,7 +21,7 @@
 				<%= "Your uploaded campaigns are listed below." %>
 				<%= "Click to download and save a PDF export or preview in the browser." %>
 				<br />
-				<%= "For our Twitter and Facebook CSV templates, click below to download." %>
+				<%= "For our Twitter, LinkedIn, and Facebook CSV templates, click below to download." %>
 			<% end %>
 			<br />
 			<br />
@@ -35,6 +35,7 @@
 			<%= link_to "Upload CSV", new_ad_file_path, class: "btn btn-primary" %>
 			<br />
 			<br />
+			<h5>Do not delete or add columns to our CSV templates, otherwise uploads will fail.</h5>
 			<h5>Click on a column heading to sort.</h5>
 			<table class = "sortable table table-bordered table-striped">
 			   <thead>
