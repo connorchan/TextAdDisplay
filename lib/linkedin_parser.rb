@@ -68,13 +68,13 @@ class LinkedinParser
       if !(row['Link to Profile Picture'].nil?)
         promtweet << row['Link to Profile Picture']
       else
-        promtweet << " "
+        promtweet << "http://postimg.org/image/cafy7bqdn/"
       end
       
       if !(row['Image Link'].nil?)
         promtweet << row['Image Link']
       else
-        promtweet << " "
+        promtweet << "http://postimg.org/image/hw8ha3wtx/"
       end
       
       if !(row['Introduction'].nil?)
