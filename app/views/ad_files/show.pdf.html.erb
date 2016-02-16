@@ -415,7 +415,7 @@
 											<p class="desktoplinkdesc">Enter a link description here...</p>
 										<% end %>
 										<% if (fbparse.ads[adset][k][7] != 0) %>
-											<span class="deskdispurl"><%= truncate(fbparse.ads[adset][k][7]), length: 30) %></span>
+											<span class="deskdispurl"><%= truncate(fbparse.ads[adset][k][7], length: 30) %></span>
 										<% else %>
 											<span class="deskdispurl">www.yoursite.com</span>
 										<% end %>
