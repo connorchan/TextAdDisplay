@@ -415,7 +415,7 @@
 											<p class="desktoplinkdesc">Enter a link description here...</p>
 										<% end %>
 										<% if (fbparse.ads[adset][k][7] != 0) %>
-											<span class="deskdispurl"><%= fbparse.ads[adset][k][7] %></span>
+											<span class="deskdispurl"><%= truncate(fbparse.ads[adset][k][7]), length: 30) %></span>
 										<% else %>
 											<span class="deskdispurl">www.yoursite.com</span>
 										<% end %>
@@ -471,7 +471,7 @@
 											<p class="moblinkdesc">Mobile link description...</p>
 										<% end %>
 										<% if (fbparse.ads[adset][k][7] != 0) %>
-											<span class="mobdispurl"><%= fbparse.ads[adset][k][7] %></span>
+											<span class="mobdispurl"><%= truncate(fbparse.ads[adset][k][7]), length: 30) %></span>
 										<% else %>
 											<span class="mobdispurl">www.yoursite.com</span>
 										<% end %>
@@ -499,7 +499,7 @@
 											<p class="rcolheadline"><strong>Right Column Headline</strong></p>
 										<% end %>
 										<% if (fbparse.ads[adset][k][7] != 0) %>
-											<p class="rcolurl"><%= fbparse.ads[adset][k][7] %></p>
+											<p class="rcolurl"><%= truncate(fbparse.ads[adset][k][7], length: 30) %></p>
 										<% else %>
 											<p class="rcolurl">www.yoursite.com</p>
 										<% end %>
