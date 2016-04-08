@@ -3,6 +3,7 @@ require 'open-uri'
 class AdwordsParser
   
   def initialize(filename)
+    #Instance variablrs for efficient storage of CSV file information
     @campaigns = []
     @campData = {}
     @adGroups = []
@@ -14,6 +15,7 @@ class AdwordsParser
     @file = open(filename)
   end
   
+  #Getter methods for data in the AdwordsParser class
   def campaigns
     @campaigns
   end
@@ -151,6 +153,7 @@ class AdwordsParser
   end
   
   def getNegatives
+    #Find the negative keywords for each ad group and add them to a hash.
     adwords = CSV.foreach("#{@file.path}", headers:true) do |row|
       negData = []
       if (@negs[row['Ad Group']].nil?)
@@ -165,7 +168,9 @@ class AdwordsParser
   end
   
   def validate_file_type
+    #Column headers for a standard AdWords CSV export
     adWordsHeaders = ["Campaign Type", "Ad Group", "Ad Group Type", "Description Line 1", "Description Line 2", "Final URL", "Keyword", "Criterion Type", "Max CPC"]
+    #If the column headers in the user-uploaded CSV match, return a valid file type. Otherwise, false.
     fileFirstRow = CSV.open("#{@file.path}", 'r') { |csv| csv.first }  
     if (fileFirstRow & adWordsHeaders).any?
       fileType = "Google AdWords"
